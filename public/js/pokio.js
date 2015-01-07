@@ -10,7 +10,7 @@
     readyEvent = 'DOMContentLoaded';
 
     var init = function(){
-        alert('Pokio Started');
+        console.log('Pokio Started');
     }
 
     if( !document[addEventListener] ){
@@ -19,18 +19,12 @@
         && attachEvent : '';
     }
 
-    var pokio = function(init) {
-        //this.init = init;
-        /in/.test(document.readyState) ?
-        !addEventListener ?
-        setTimeout(function() { init(); }, 9)
-        : document[addEventListener](readyEvent, init, false)
-        : init();
-        return this;
-    };
+    /in/.test(document.readyState) ?
+    !addEventListener ?
+    setTimeout(function() { init(); }, 9)
+    : document[addEventListener](readyEvent, init, false)
+    : init();
 
-    return pokio;
+    return this
 
 }(window, document, window.pokio = window.pokio || {}));
-
-//window.pokio().init();
