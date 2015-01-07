@@ -1,0 +1,36 @@
+@charset "utf-8";
+
+@font-face {
+    font-family: "Pokio";
+    src: local('Times New Roman');
+    unicode-range: U+25C9,U+25CE ;
+}
+
+.poki{
+    font-size: 26px;
+    line-height: 32px;
+    font-family: Pokio;
+    font-style: none !important;
+    display: inline-block;
+    vertical-align: text-middle;
+    text-align: center;
+    width:28px; height:28px;
+    border: 1px solid #999;
+    background-color: #555;
+    -webkit-border-radius: 0.9em;
+    -moz-border-radius: 0.9em;
+    border-radius: 0.9em;
+}
+
+.poki:before {
+    content: "\25CE";
+    color: #AAA;
+    position:absolute;
+    margin:0;padding:0;
+/*    margin-top: 0.22em; */
+    margin-left: -0.49em;
+}
+.poki.o:before {
+    content: "\25C9";
+    color: #CDC;
+}
