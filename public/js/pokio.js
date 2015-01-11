@@ -4,7 +4,7 @@
 //******************************************************/
 (function(window, document, pokio, undefined) {
 
-    var gateway = "http://spaghetti.local/projects/pokio/src/php/pokio-recorder.php"
+    var gateway = ""
 
     var attachEvent = 'attachEvent',
     addEventListener = 'addEventListener',
