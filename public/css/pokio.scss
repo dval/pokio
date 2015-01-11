@@ -1,0 +1,67 @@
+@charset "utf-8";
+/* Pokio: main css file */
+//pokio unicode characters U+25C9 and U+25CE
+//are graphically similar to the svg versions
+//the html entity versons: &#9678; and &#9673;
+@font-face {
+    font-family: "Pokio";
+    src: local("Lucida Console", Monaco, monospace);
+    unicode-range: U+25C9,U+25CE ;
+}
+$font-stack: Pokio, Helvetica, sans-serif, Arial;
+$primary-background: #555;
+$primary-border: 1px solid #999;
+$primary-color: #333;
+//default svg size.
+$square:64px;
+//start scale is based on 64px
+$start-scale:0.48;
+
+@mixin border-radius($radius) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    border-radius: $radius;
+}
+@mixin transform-scale($scale) {
+    -ms-transform: scale($scale);
+    -moz-transform: scale($scale);
+    -webkit-transform: scale($scale);
+    transform: scale($scale);
+}
+.pok-text{
+    position:relative;
+    display:inline-block;
+}
+.pok-text:hover{
+    @include transform-scale(1.24);
+}
+.pok{
+    display: inline-block;
+    font-family: $font-stack;
+    color:$primary-color;
+    font-style: none !important;
+    text-align: center;
+    vertical-align: text-bottom;
+    width:$square; height:$square;
+    border:$primary-border;
+    background-color: $primary-background;
+    @include border-radius(2em);
+    @include transform-scale($start-scale);
+}
+.pok.i:before, .pok.o:before {
+    content: "";
+    position:absolute;
+    margin:0 auto;
+    left:0px;
+    width:$square; height:$square;
+}
+.pok.o:before {
+    background:url(../../assets/poki.svg);
+}
+.pok.i:before {
+    background:url(../../assets/poko.svg);
+}
+.pok:hover {
+    @include transform-scale($start-scale+0.04);
+}

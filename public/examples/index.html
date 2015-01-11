@@ -1,15 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link rel="stylesheet" href="../css/pokio.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="../css/pokio.css" rel="stylesheet" />
     <script src="../js/pokio.js" type="text/javascript"></script>
 </head>
-
 <body style="background:#f85719">
-    <span>text stuffs </span>
-    <span id="page-poki" class="poki"></span>
-    <span id="section1-poki"  class="poki"></span>
-    <span id="section2-poki"  class="poki o"></span>
+    <h4>As &lt;span&gt; tag:</h4>
+    <code>&lt;span id="span-pok" class="pok"&gt;&lt;/span&gt;</code><br>
+    <span id="section1-pok" class="pok i" data-pokio="uniqueTrack47"></span>
+    <span id="section2-pok" class="pok o"></span>
+    <h4>As &lt;img&gt; tag:</h4>
+    <code>&lt;img src="pokio.svg" alt="pokio" class="pok" id="image-pok" /&gt;</code><br>
+    <img src="../../assets/poko.svg" alt="pokio" class="pok i" id="image1-pok" />
+    <img src="../../assets/poki.svg" alt="pokio" class="pok o" id="image2-pok" />
+    <h4>As &lt;span&gt; tag as inline text:</h4>
+    <code>text &lt;span class="pok-text" id="inline1-pok"&gt;&amp;#9673;&lt;/span&gt; text</code>
+    <br><br>
+    <span style="color:white;">text
+        <span class="pok-text i" id="inline1-pok">&#9678;</span>
+        <span class="pok-text o" id="inline2-pok">&#9673;</span> stuffs
+    </span>
 </body>
 </html>
