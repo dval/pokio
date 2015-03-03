@@ -11,11 +11,11 @@
 $font-stack: Pokio, Helvetica, sans-serif, Arial;
 $primary-background: #555;
 $primary-border: 1px solid #999;
-$primary-color: #333;
+$primary-color: #CCC;
 //default svg size.
 $square:64px;
 //start scale is based on 64px
-$start-scale:0.48;
+$start-scale:1;
 
 @mixin border-radius($radius) {
     -webkit-border-radius: $radius;
@@ -34,8 +34,9 @@ $start-scale:0.48;
     display:inline-block;
 }
 .pok-text:hover{
-    @include transform-scale(1.24);
+    @include transform-scale(1.14);
 }
+
 .pok{
     display: inline-block;
     font-family: $font-stack;
@@ -46,7 +47,7 @@ $start-scale:0.48;
     width:$square; height:$square;
     border:$primary-border;
     background-color: $primary-background;
-    @include border-radius(2em);
+    @include border-radius(24em);
     @include transform-scale($start-scale);
 }
 .pok.i:before, .pok.o:before {
@@ -54,13 +55,18 @@ $start-scale:0.48;
     position:absolute;
     margin:0 auto;
     left:0px;
-    width:$square; height:$square;
+    height: inherit;
+    width: inherit;
 }
 .pok.o:before {
     background:url(../../assets/poki.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 .pok.i:before {
     background:url(../../assets/poko.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 .pok:hover {
     @include transform-scale($start-scale+0.04);
