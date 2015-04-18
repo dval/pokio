@@ -16,12 +16,14 @@ $pokio_cfg['root']='/pokio';
 $pokio_cfg['http']=true;
 
 //changing this will attempt to create a new file.
-$pokio_cfg['statfile']=realpath(dirname(dirname(__FILE__)))."/stats/ratings.csv";
+//relative to pokio install
+$pokio_cfg['statfile']="/stats/ratings.csv";
 
 //use db instead of csv file
 $pokio_cfg['db-type']=false;
 
 //only work if 'db-on' is false.
+//relative to pokio install
 $pokio_cfg['db-path']="/path/to/sqlite.db";
 
 //only work if 'db-on' is true.
