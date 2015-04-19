@@ -1,8 +1,17 @@
-/* Pokio: main css file */
+/* Pokio: main css file 
+** pokio unicode characters U+25C9 and U+25CE
+** are graphically similar to the svg versions
+** the html entity versons: &#9678; and &#9673;
+*/
 @font-face {
   font-family: "Pokio";
   src: local("Lucida Console", Monaco, monospace);
   unicode-range: U+25C9, U+25CE; }
+/* set default svg size to 64 px then,
+** our starting scale is based on 64px. 
+** you can adjust the animations by adjusting
+** the $start-scale and $zoom-scale variables.
+*/
 .pok-text {
   position: relative;
   display: inline-block; }
@@ -52,9 +61,9 @@
   background-repeat: no-repeat; }
 
 .pok:hover {
-  -ms-transform: scale(1.04);
-  -moz-transform: scale(1.04);
-  -webkit-transform: scale(1.04);
-  transform: scale(1.04); }
+  -ms-transform: scale(1.05);
+  -moz-transform: scale(1.05);
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05); }
 
 /*# sourceMappingURL=pokio.css.map */

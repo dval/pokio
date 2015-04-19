@@ -1,8 +1,9 @@
 @charset "utf-8";
-/* Pokio: main css file */
-//pokio unicode characters U+25C9 and U+25CE
-//are graphically similar to the svg versions
-//the html entity versons: &#9678; and &#9673;
+/* Pokio: main css file 
+** pokio unicode characters U+25C9 and U+25CE
+** are graphically similar to the svg versions
+** the html entity versons: &#9678; and &#9673;
+*/
 @font-face {
     font-family: "Pokio";
     src: local("Lucida Console", Monaco, monospace);
@@ -12,10 +13,14 @@ $font-stack: Pokio, Helvetica, sans-serif, Arial;
 $primary-background: #555;
 $primary-border: 1px solid #999;
 $primary-color: #CCC;
-//default svg size.
+/* set default svg size to 64 px then,
+** our starting scale is based on 64px. 
+** you can adjust the animations by adjusting
+** the $start-scale and $zoom-scale variables.
+*/
 $square:64px;
-//start scale is based on 64px
 $start-scale:1;
+$zoom-scale:1.05;
 
 @mixin border-radius($radius) {
     -webkit-border-radius: $radius;
@@ -69,5 +74,5 @@ $start-scale:1;
     background-repeat: no-repeat;
 }
 .pok:hover {
-    @include transform-scale($start-scale+0.04);
+    @include transform-scale($zoom-scale);
 }
