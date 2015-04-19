@@ -10,7 +10,7 @@ class Pokio {
     private $pokio_cfg = array();
     private $storageDB;
 
-    public $verbos = 0;
+    public $verbos = 2;
 
     public function __construct($config) {
         $this->pokio_cfg = $config;
@@ -45,11 +45,15 @@ class Pokio {
     //cheap domain control
     //there are 'better' ways, this is just convenient
     public function allowedHost(){
-
+        // get allowed domains
         $allowedDomain = $this->pokio_cfg['domain'];
 
+        //if it's called from the page we expect
+        $isAjax = isset($_SERVER['HTTP_X_REQUESTED_WITH']) AND 
+          strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
+
         //filter proxied requests
-        if (strstr($_SERVER['REMOTE_ADDR'], ', ')) {
+        if (strstr($_SERVER['REMOTE_ADDR'], ',')) {
             $ips = explode(', ', $_SERVER['REMOTE_ADDR']);
             $requestDomain = $ips[0];
         }else{
