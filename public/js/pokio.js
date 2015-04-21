@@ -7,25 +7,50 @@
     var gateway = "",
     attachEvent = 'attachEvent',
     addEventListener = 'addEventListener',
-    readyEvent = 'DOMContentLoaded';
+    readyEvent = 'DOMContentLoaded',
+    poken = {'id':'','value':''};
 
-    var togglePokio = function(mevt){
-        console.log(mevt);
-        var e = mevt.srcElement;
+    var makeRequest = function(rdata,callback){
+
         xmlhttp=new XMLHttpRequest();
         xmlhttp.onreadystatechange=function(){
             if (xmlhttp.readyState==4 && xmlhttp.status==200){
-                console.log(xmlhttp.responseText);
+                callback(xmlhttp.responseText);
                 xmlhttp = null;
             }
         }
-        xmlhttp.open("POST","http://spaghetti.local/projects/pokio/src/php/pokio-recorder.php",true);
+        //is there a better way to link paths?
+        xmlhttp.open("POST","../php/pokio.php",true);
         xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+
+        xmlhttp.send(rdata);
+    }
+
+    var getToken = function(){
+        makeRequest('',setToken);
+    }
+
+    var setToken = function(response){
+        response = JSON.parse(response);
+        for(var k in response){
+            poken.id=k;
+            poken.value=response[k];
+        }
+    }
+
+    var togglePokio = function(mevt){
+        //console.log(mevt);
+        var e = mevt.srcElement;
         var tn = mevt.target.localName;
         var id = mevt.target.id;
         var cn = mevt.target.className.split(' ').join('.');
         var ts = mevt.timeStamp;
-        xmlhttp.send("id="+id+"#"+cn+"&ts="+ts);
+
+        var req = "id="+id+"#"+cn+"&ts="+ts+"&"+poken.id+"="+poken.value;
+
+        makeRequest(req,function(responseText){
+                console.log(responseText);
+            });
         //TODO: make the pokios toggle!
         //swap classes i/o
         //swap img srcs
@@ -36,16 +61,17 @@
             if(p.indexOf('data-pokio')>-1){
                 console.log(p);
             }else{
-                //console.log(e);
+                console.log(e);
             }
-        //console.log(p);
         }
         */
     }
 
     //doit
     var init = function(){
-        console.log('Pokio Started');
+
+        getToken();
+
         var poks = document.getElementsByClassName('pok');
         var poktxts = document.getElementsByClassName('pok-text');
         for(var p=0;p<poks.length;p++){
@@ -54,6 +80,9 @@
         for(var pt=0;pt<poktxts.length;pt++){
             poktxts[pt].addEventListener('click',togglePokio,false);
         }
+
+        console.log('Pokio Started');
+
     }
 
     //equalize 'domReady' event
@@ -62,11 +91,15 @@
         (readyEvent = 'onreadystatechange')
         && attachEvent : '';
     }
-    /in/.test(document.readyState) ?
-    !addEventListener ?
-    setTimeout(function() { init(); }, 9)
-    : document[addEventListener](readyEvent, init, false)
-    : init();
+    if(/in/.test(document.readyState)){
+        if(!addEventListener ){
+            setTimeout(function() { init(); }, 9);
+        }else{
+            document[addEventListener](readyEvent, init, false);
+        }
+    }else{
+        init();
+    }
 
     return this;
 
