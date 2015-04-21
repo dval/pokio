@@ -51,12 +51,12 @@
   width: inherit; }
 
 .pok.o:before {
-  background: url(../../assets/poki.svg);
+  background: url(assets/poki.svg);
   background-size: cover;
   background-repeat: no-repeat; }
 
 .pok.i:before {
-  background: url(../../assets/poko.svg);
+  background: url(assets/poko.svg);
   background-size: cover;
   background-repeat: no-repeat; }
 
