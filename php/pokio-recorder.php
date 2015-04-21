@@ -156,6 +156,9 @@ class Pokio {
     public function handleRequest(){
 
         if($this->allowedHost()){
+
+            ob_start();
+
             if($this->validateToken()){
                 $record = $this->sanitizedPost('ts').", ";
                 $record.= $this->sanitizedPost('id');
@@ -163,13 +166,16 @@ class Pokio {
                 $this->writeToStorage($record);
 
                 $this->buildHeader(POKIO_TEXT);
-
                 print "success";
+                $this->contentLength=ob_get_length();
 
             }else{
                 $this->buildHeader(POKIO_JSON);
                 print "{\"".$this->salt."\":\"".$this->generateToken()."\"}\n";
+                $this->contentLength=ob_get_length();
             }
+            
+            ob_end_flush();
         }
 
     }
